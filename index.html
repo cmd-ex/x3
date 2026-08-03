@@ -2,204 +2,146 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hack Theme</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Sosmed Minimalis</title>
+    <!-- Ikon dari FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* === PENGATURAN DASAR & TEMA HACKER === */
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent; 
+        }
         body {
+            /* Font modern bawaan sistem */
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f0f2f5; /* Latar belakang abu-abu sangat terang */
             margin: 0;
             padding: 0;
-            height: 100vh;
+            display: flex;
+            justify-content: center;
+        }
+        .mobile-app {
+            width: 100%;
+            max-width: 480px;
+            background: #fafbfc; /* Warna dasar aplikasi */
+            min-height: 100vh;
+            box-shadow: 0 0 20px rgba(0,0,0,0.05);
+            padding-bottom: 40px;
+        }
+        .header {
+            padding: 50px 24px 30px 24px;
+        }
+        .header h1 {
+            font-size: 28px;
+            color: #1a1a1a;
+            margin: 0 0 8px 0;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+        .header p {
+            font-size: 15px;
+            color: #718096;
+            margin: 0;
+        }
+        .menu-list {
             display: flex;
             flex-direction: column;
-            background-color: #050505;
-            /* Efek latar belakang garis-garis terminal hacker */
-            background-image: 
-                linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.4) 50%), 
-                linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
-            background-size: 100% 4px, 6px 100%;
-            font-family: 'Courier New', Courier, monospace;
-            color: #00ff41;
-            overflow: hidden; /* Mencegah scroll di body utama */
+            gap: 12px;
+            padding: 0 24px;
         }
-
-        /* === HEADER (APP BAR) === */
-        header {
+        .menu-item {
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            padding: 15px 20px;
-            background-color: #000;
-            border-bottom: 2px solid #00ff4166;
-            box-shadow: 0 4px 10px rgba(0, 255, 65, 0.2);
-            z-index: 10;
+            background: #ffffff;
+            padding: 16px;
+            border-radius: 16px;
+            text-decoration: none;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+            transition: all 0.2s ease;
         }
-
-        .header-title {
-            font-size: 20px;
-            font-weight: bold;
-            text-shadow: 0 0 8px #00ff41;
-            flex-grow: 1;
-            text-align: center;
+        /* Efek saat tombol ditekan */
+        .menu-item:active {
+            transform: scale(0.97);
+            box-shadow: 0 1px 4px rgba(0,0,0,0.02);
+            background: #f7fafc;
         }
-
-        /* Tombol Kembali di Header */
-        .back-btn {
-            display: none;
-            background-color: transparent;
-            color: #00ff41;
-            border: 1px solid #00ff41;
-            padding: 8px 16px;
-            font-size: 16px;
-            font-family: 'Courier New', Courier, monospace;
-            cursor: pointer;
-            border-radius: 4px;
-            text-shadow: 0 0 5px #00ff41;
-            transition: all 0.2s;
-        }
-
-        .back-btn:hover {
-            background-color: #00ff41;
-            color: #000;
-            box-shadow: 0 0 15px #00ff41;
-        }
-
-        /* === AREA KONTEN UTAMA === */
-        main {
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            width: 100%;
-            height: calc(100vh - 60px);
-        }
-
-        /* === TAMPILAN 1: GRID MENU (RESPONSIF) === */
-        #menu-view {
-            display: grid;
-            gap: 15px;
-            padding: 20px;
-            width: 100%;
-            height: 100%;
-            box-sizing: border-box;
-        }
-
-        /* Desain Kotak Tombol */
-        .box {
-            background-color: rgba(0, 30, 10, 0.6);
-            color: #00ff41;
-            border: 2px solid #00ff4166;
-            border-radius: 10px;
+        /* Kotak ikon */
+        .icon-box {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 2rem;
-            font-weight: bold;
-            cursor: pointer;
-            box-shadow: 0 0 10px rgba(0, 255, 65, 0.1);
-            transition: all 0.3s ease;
-            text-shadow: 0 0 5px #00ff41;
+            font-size: 20px;
+            margin-right: 16px;
+        }
+        .menu-text {
+            font-size: 16px;
+            font-weight: 600;
+            color: #2d3748;
+            flex-grow: 1; /* Mendorong ikon panah ke ujung kanan */
+        }
+        .arrow {
+            color: #cbd5e0;
+            font-size: 14px;
         }
 
-        .box:hover {
-            background-color: #00ff41;
-            color: #000;
-            box-shadow: 0 0 20px #00ff41;
-            transform: translateY(-3px);
-        }
-
-        .box:active {
-            transform: scale(0.95);
-        }
-
-        /* MEDIA QUERY: LAYAR PORTRAIT (HP Berdiri) */
-        @media (orientation: portrait) {
-            #menu-view {
-                grid-template-columns: repeat(2, 1fr); /* 2 Kolom */
-                grid-template-rows: repeat(4, 1fr);    /* 4 Baris */
-            }
-        }
-
-        /* MEDIA QUERY: LAYAR LANDSCAPE (HP Mendatar / Monitor) */
-        @media (orientation: landscape) {
-            #menu-view {
-                grid-template-columns: repeat(4, 1fr); /* 4 Kolom */
-                grid-template-rows: repeat(2, 1fr);    /* 2 Baris */
-            }
-        }
-
-        /* === TAMPILAN 2: TAMPILAN WEBSITE === */
-        #web-view {
-            display: none;
-            width: 100%;
-            height: 100%;
-        }
-
-        iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-            background-color: #fff; /* Agar website yang tidak punya background tetap terbaca */
-        }
+        /* Warna Ikon (Teks & Background transparan/pastel) */
+        .instagram { color: #E1306C; background: #FCE6EF; }
+        .facebook { color: #1877F2; background: #E7F0FD; }
+        .twitter { color: #0F1419; background: #E7E9EA; }
+        .tiktok { color: #000000; background: #E2E8F0; }
+        .whatsapp { color: #25D366; background: #E9F9EE; }
+        .telegram { color: #0088CC; background: #E5F3FA; }
     </style>
 </head>
 <body>
 
-    <!-- HEADER / APP BAR -->
-    <header>
-        <button class="back-btn" id="btn-kembali" onclick="kembaliKeMenu()">[←] BACK</button>
-        <div class="header-title" id="app-title">ROOT_SYSTEM // MENU</div>
-        <!-- Spacer untuk menyeimbangkan posisi judul di tengah -->
-        <div style="width: 80px; display: none;" id="header-spacer"></div> 
-    </header>
-
-    <!-- KONTEN UTAMA -->
-    <main>
+<div class="mobile-app">
+    <div class="header">
+        <h1>Koneksi</h1>
+        <p>Pilih platform untuk terhubung</p>
+    </div>
+    
+    <div class="menu-list">
+        <a href="https://www.instagram.com" target="_blank" class="menu-item">
+            <div class="icon-box instagram"><i class="fab fa-instagram"></i></div>
+            <span class="menu-text">Instagram</span>
+            <i class="fas fa-chevron-right arrow"></i>
+        </a>
         
-        <!-- TAMPILAN MENU GRID -->
-        <div id="menu-view">
-            <a href="https://www.threads.com/" class="box">NODE_ADS</a>
-            <a href="https://www.instagram.com/" class="box">NODE_IG</a>
-            <a href="https://web.whatsapp.com/" class="box">NODE_WA</a>
-            <a href="https://www.facebook.com/" class="box">NODE_FB</a>
-            <a href="https://www.tiktok.com/" class="box">NODE_TT</a>
-            <a href="https://komiku.org" class="box">NODE_KOMIK</a>
-            <a href="https://anoboy.be/" class="box">NODE_ANIME</a>
-            <a href="https://www.google.com/" class="box">NODE_GOOGLE</a>
-        </div>
-
-        <!-- TAMPILAN WEBSITE (IFRAME) -->
-        <div id="web-view">
-            <iframe id="layar-web" src=""></iframe>
-        </div>
-
-    </main>
-
-    <!-- LOGIKA JAVASCRIPT -->
-    <script>
-        function bukaWebsite(url) {
-            // Sembunyikan menu, tampilkan iframe
-            document.getElementById('menu-view').style.display = 'none';
-            document.getElementById('web-view').style.display = 'block';
-            document.getElementById('layar-web').src = url;
-
-            // Atur Header (Ubah Judul dan Munculkan Tombol Back)
-            document.getElementById('app-title').innerText = 'SECURE_BROWSER // AKTIF';
-            document.getElementById('btn-kembali').style.display = 'block';
-            document.getElementById('header-spacer').style.display = 'block';
-        }
-
-        function kembaliKeMenu() {
-            // Sembunyikan iframe, tampilkan menu kembali
-            document.getElementById('web-view').style.display = 'none';
-            document.getElementById('menu-view').style.display = 'grid'; // Pastikan kembali ke format grid
-            document.getElementById('layar-web').src = ''; // Putus koneksi iframe
-
-            // Atur Header kembali ke kondisi awal
-            document.getElementById('app-title').innerText = 'ROOT_SYSTEM // MENU';
-            document.getElementById('btn-kembali').style.display = 'none';
-            document.getElementById('header-spacer').style.display = 'none';
-        }
-    </script>
+        <a href="https://www.facebook.com" target="_blank" class="menu-item">
+            <div class="icon-box facebook"><i class="fab fa-facebook-f"></i></div>
+            <span class="menu-text">Facebook</span>
+            <i class="fas fa-chevron-right arrow"></i>
+        </a>
+        
+        <a href="https://twitter.com" target="_blank" class="menu-item">
+            <div class="icon-box twitter"><i class="fa-brands fa-twitter-x"></i></div>
+            <span class="menu-text">X (Twitter)</span>
+            <i class="fas fa-chevron-right arrow"></i>
+        </a>
+        
+        <a href="https://www.tiktok.com" target="_blank" class="menu-item">
+            <div class="icon-box tiktok"><i class="fab fa-tiktok"></i></div>
+            <span class="menu-text">TikTok</span>
+            <i class="fas fa-chevron-right arrow"></i>
+        </a>
+        
+        <a href="https://api.whatsapp.com/send?text=Halo" target="_blank" class="menu-item">
+            <div class="icon-box whatsapp"><i class="fab fa-whatsapp"></i></div>
+            <span class="menu-text">WhatsApp</span>
+            <i class="fas fa-chevron-right arrow"></i>
+        </a>
+        
+        <a href="https://t.me" target="_blank" class="menu-item">
+            <div class="icon-box telegram"><i class="fab fa-telegram-plane"></i></div>
+            <span class="menu-text">Telegram</span>
+            <i class="fas fa-chevron-right arrow"></i>
+        </a>
+    </div>
+</div>
 
 </body>
 </html>
