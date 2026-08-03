@@ -2,9 +2,8 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <!-- Meta viewport ini sangat penting agar responsif di HP -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Hacker Browser Responsive</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mockup Web Browser</title>
     <!-- FontAwesome untuk Ikon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -12,46 +11,45 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            -webkit-tap-highlight-color: transparent;
         }
         body {
-            background-color: #050505; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #cbd5e1; /* Warna latar belakang luar browser */
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            font-family: 'Courier New', Courier, monospace; 
-            padding: 10px; /* Memberi jarak agar tidak menempel di tepi layar HP */
         }
 
         /* ------------------------- */
         /* WADAH UTAMA BROWSER       */
         /* ------------------------- */
         .browser-window {
-            width: 100%;
+            width: 90%;
             max-width: 1000px;
-            height: 85vh;
-            background: #000000;
-            border-radius: 8px;
-            box-shadow: 0 0 30px rgba(0, 255, 0, 0.15);
+            height: 80vh;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
             display: flex;
             flex-direction: column;
             overflow: hidden;
-            border: 1px solid #003300;
+            border: 1px solid #b4bcc6;
         }
 
         /* ------------------------- */
         /* BAGIAN ATAS (TOOLBAR)     */
         /* ------------------------- */
         .browser-header {
-            background: #0a0a0a;
-            padding: 12px 16px;
+            background: #f1f3f4; /* Warna abu-abu ala Chrome */
+            padding: 10px 16px;
             display: flex;
             align-items: center;
-            border-bottom: 1px solid #00ff00;
-            gap: 15px;
+            border-bottom: 1px solid #dadce0;
+            gap: 20px;
         }
 
+        /* Tombol Window (Merah, Kuning, Hijau ala Mac) */
         .window-controls {
             display: flex;
             gap: 8px;
@@ -60,256 +58,182 @@
             width: 12px;
             height: 12px;
             border-radius: 50%;
-            box-shadow: 0 0 5px currentColor;
         }
-        .dot.close { background: #ff2a2a; color: #ff2a2a; }
-        .dot.minimize { background: #ffcc00; color: #ffcc00; }
-        .dot.maximize { background: #00ff00; color: #00ff00; }
+        .dot.close { background: #ff5f56; }
+        .dot.minimize { background: #ffbd2e; }
+        .dot.maximize { background: #27c93f; }
 
+        /* Tombol Navigasi (Back, Forward, Refresh) */
         .nav-buttons {
             display: flex;
-            gap: 12px;
-            color: #00ff00;
+            gap: 16px;
+            color: #5f6368;
             font-size: 16px;
         }
-        .nav-buttons i { 
-            cursor: pointer; 
-            transition: all 0.2s; 
-            text-shadow: 0 0 5px #00ff00;
-        }
-        .nav-buttons i:hover { color: #fff; text-shadow: 0 0 8px #fff; }
+        .nav-buttons i { cursor: pointer; transition: color 0.2s; }
+        .nav-buttons i:hover { color: #202124; background: #e8eaed; border-radius: 50%; }
 
-        /* Kolom URL */
+        /* Kolom Pencarian / URL (Address Bar) */
         .address-bar {
             flex-grow: 1;
-            background: #000000;
-            border-radius: 4px;
-            padding: 8px 12px;
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 8px 16px;
             display: flex;
             align-items: center;
-            border: 1px solid #00ff00;
-            box-shadow: inset 0 0 8px rgba(0, 255, 0, 0.2);
-            min-width: 0; /* Mencegah elemen keluar batas di flexbox */
+            border: 1px solid #dfe1e5;
         }
-        .address-bar .fa-terminal {
-            color: #00ff00;
+        .address-bar:focus-within {
+            box-shadow: 0 1px 6px rgba(32,33,36,0.28);
+            border-color: transparent;
+        }
+        .address-bar .fa-lock {
+            color: #5f6368;
             font-size: 13px;
-            margin-right: 10px;
-            text-shadow: 0 0 5px #00ff00;
+            margin-right: 12px;
         }
         .address-bar input {
             border: none;
             outline: none;
             width: 100%;
             font-size: 14px;
-            color: #00ff00;
-            background: transparent;
-            font-family: 'Courier New', Courier, monospace;
-            text-shadow: 0 0 2px #00ff00;
-            text-overflow: ellipsis; /* Menambahkan titik tiga jika teks kepanjangan */
+            color: #202124;
+        }
+        .address-bar .fa-star {
+            color: #5f6368;
+            cursor: pointer;
         }
 
+        /* Ikon Ekstensi & Menu */
         .action-buttons {
             display: flex;
-            gap: 12px;
-            color: #00ff00;
+            gap: 16px;
+            color: #5f6368;
             font-size: 16px;
-            text-shadow: 0 0 5px #00ff00;
         }
 
         /* ------------------------- */
         /* KONTEN DALAM BROWSER      */
+        /* (Halaman Fake Google)     */
         /* ------------------------- */
         .browser-content {
             flex-grow: 1;
-            background: #000000;
+            background: #ffffff;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             position: relative;
-            padding: 20px;
         }
 
-        .browser-content::before {
-            content: " ";
-            display: block;
-            position: absolute;
-            top: 0; left: 0; bottom: 0; right: 0;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
-            background-size: 100% 4px;
-            z-index: 2;
-            pointer-events: none;
-        }
-
+        /* Logo Google Tiruan */
         .fake-logo {
-            font-size: 60px;
-            font-weight: bold;
-            color: #00ff00;
-            margin-bottom: 30px;
-            text-shadow: 0 0 15px #00ff00;
-            letter-spacing: 4px;
-            z-index: 3;
-            text-align: center;
+            font-size: 70px;
+            font-weight: 600;
+            letter-spacing: -2px;
+            margin-bottom: 25px;
+            font-family: 'Product Sans', Arial, sans-serif;
         }
-        
-        .cursor-blink {
-            animation: blink 1s step-end infinite;
-        }
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
-        }
+        .fake-logo span:nth-child(1) { color: #4285F4; } /* G */
+        .fake-logo span:nth-child(2) { color: #EA4335; } /* o */
+        .fake-logo span:nth-child(3) { color: #FBBC05; } /* o */
+        .fake-logo span:nth-child(4) { color: #4285F4; } /* g */
+        .fake-logo span:nth-child(5) { color: #34A853; } /* l */
+        .fake-logo span:nth-child(6) { color: #EA4335; } /* e */
 
+        /* Kotak Pencarian Web */
         .fake-search {
             display: flex;
             align-items: center;
             width: 100%;
-            max-width: 600px;
-            border: 1px solid #00ff00;
-            border-radius: 4px;
+            max-width: 580px;
+            border: 1px solid #dfe1e5;
+            border-radius: 24px;
             padding: 12px 20px;
             margin-bottom: 30px;
-            background: rgba(0, 255, 0, 0.05);
-            box-shadow: 0 0 15px rgba(0, 255, 0, 0.15);
-            transition: all 0.3s;
-            z-index: 3;
+            transition: box-shadow 0.2s;
         }
-        .fake-search:focus-within {
-            box-shadow: 0 0 25px rgba(0, 255, 0, 0.4);
-            background: rgba(0, 255, 0, 0.1);
+        .fake-search:hover {
+            box-shadow: 0 1px 6px rgba(32,33,36,0.28);
         }
-        .fake-search i { 
-            color: #00ff00; 
-            margin-right: 15px;
-            text-shadow: 0 0 5px #00ff00;
-        }
+        .fake-search i.fa-search { color: #9aa0a6; margin-right: 15px; }
         .fake-search input {
             border: none;
             outline: none;
             flex-grow: 1;
             font-size: 16px;
-            color: #00ff00;
-            background: transparent;
-            font-family: 'Courier New', Courier, monospace;
         }
+        .fake-search i.fa-microphone { color: #4285F4; cursor: pointer; }
 
+        /* Tombol Pencarian */
         .fake-buttons {
             display: flex;
-            gap: 20px;
-            z-index: 3;
-            width: 100%;
-            justify-content: center;
+            gap: 12px;
         }
         .fake-buttons button {
-            background-color: transparent;
-            border: 1px solid #00ff00;
-            color: #00ff00;
-            font-family: 'Courier New', Courier, monospace;
-            font-weight: bold;
+            background-color: #f8f9fa;
+            border: 1px solid #f8f9fa;
+            border-radius: 4px;
+            color: #3c4043;
             font-size: 14px;
-            padding: 12px 24px;
+            padding: 10px 16px;
             cursor: pointer;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            transition: all 0.2s;
-            box-shadow: inset 0 0 5px rgba(0, 255, 0, 0.2);
-            white-space: nowrap;
         }
         .fake-buttons button:hover {
-            background-color: #00ff00;
-            color: #000000;
-            box-shadow: 0 0 15px #00ff00;
-        }
-
-        /* ------------------------------------------- */
-        /* MEDIA QUERIES (UNTUK TAMPILAN MOBILE)       */
-        /* ------------------------------------------- */
-        @media screen and (max-width: 768px) {
-            .browser-header {
-                padding: 10px;
-                gap: 10px;
-            }
-            
-            /* Sembunyikan tombol navigasi & action agar address bar muat di HP */
-            .nav-buttons, .action-buttons {
-                display: none;
-            }
-            
-            /* Sesuaikan ukuran logo */
-            .fake-logo {
-                font-size: 32px;
-                letter-spacing: 2px;
-            }
-
-            .fake-search {
-                padding: 10px 15px;
-            }
-
-            .fake-search input {
-                font-size: 14px;
-            }
-
-            /* Ubah susunan tombol menjadi vertikal (atas-bawah) */
-            .fake-buttons {
-                flex-direction: column;
-                gap: 12px;
-                max-width: 300px;
-            }
-            .fake-buttons button {
-                width: 100%;
-                padding: 14px 20px;
-            }
-
-            /* Perkecil ukuran teks URL */
-            .address-bar input {
-                font-size: 12px;
-            }
+            border: 1px solid #dadce0;
+            box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+            color: #202124;
         }
     </style>
 </head>
 <body>
 
     <div class="browser-window">
-        <!-- TOOLBAR -->
+        <!-- 1. BAGIAN TOOLBAR BROWSER -->
         <div class="browser-header">
+            <!-- Tombol Window (Mac Style) -->
             <div class="window-controls">
                 <div class="dot close"></div>
                 <div class="dot minimize"></div>
                 <div class="dot maximize"></div>
             </div>
 
+            <!-- Tombol Back, Forward, Refresh -->
             <div class="nav-buttons">
-                <i class="fas fa-chevron-left"></i>
-                <i class="fas fa-chevron-right"></i>
-                <i class="fas fa-sync-alt"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-right"></i>
+                <i class="fas fa-redo"></i>
             </div>
 
+            <!-- Address Bar (Kolom URL) -->
             <div class="address-bar">
-                <i class="fas fa-terminal"></i>
-                <input type="text" value="root@localhost:~/network/gateway" readonly>
+                <i class="fas fa-lock"></i>
+                <input type="text" value="https://www.google.com" readonly>
+                <i class="far fa-star"></i>
             </div>
 
+            <!-- Ikon Menu Kanan -->
             <div class="action-buttons">
-                <i class="fas fa-user-secret"></i>
-                <i class="fas fa-bars"></i>
+                <i class="fas fa-puzzle-piece"></i>
+                <i class="fas fa-ellipsis-v"></i>
             </div>
         </div>
 
-        <!-- KONTEN -->
+        <!-- 2. KONTEN DALAM BROWSER -->
         <div class="browser-content">
             <div class="fake-logo">
-                >_SYSTEM_ROOT<span class="cursor-blink">_</span>
+                <span>G</span><span>o</span><span>o</span><span>g</span><span>l</span><span>e</span>
             </div>
             
             <div class="fake-search">
-                <i class="fas fa-angle-right"></i>
-                <input type="text" placeholder="Enter command or target...">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Telusuri Google atau ketik URL">
+                <i class="fas fa-microphone"></i>
             </div>
 
             <div class="fake-buttons">
-                <button>Execute Search</button>
-                <button>Bypass Firewall</button>
+                <button>Penelusuran Google</button>
+                <button>Saya Lagi Beruntung</button>
             </div>
         </div>
     </div>
